@@ -826,6 +826,24 @@ PlaneObject.prototype.setMarkerRgb = function() {
     this.glMarker.set('b', rgb[2]);
 };
 
+function shortenAircraftType(type) {
+    if (type.startsWith("BOEING 7")) {
+            return type.replace(/BOEING\s(7.*)/, "B$1");
+    } else if (type.startsWith("AIRBUS ")) {
+            return type.replace(/AIRBUS\s/, "");
+    } else if (type.startsWith("Bell/Boeing ")) {
+            return type.replace(/Bell/Boeing\s/, "");
+    } else if (type.startsWith("BELL-BOEING ")) {
+            return type.replace(/BELL-BOEING\s/, "");
+    } else if (type.startsWith("BOEING ")) {
+            return type.replace(/BOEING\s/, "");
+    } else if (type.startsWith("DE HAVILLAND ")) {
+            return type.replace(/DE HAVILLAND\s/, "");
+    } else {
+            return type;
+    }
+}
+
 PlaneObject.prototype.updateIcon = function() {
 
     let fillColor = hslToRgb(this.getMarkerColor());
@@ -853,6 +871,10 @@ PlaneObject.prototype.updateIcon = function() {
 
         const unknown = NBSP+NBSP+"?"+NBSP+NBSP;
 
+        callsign = this.icao.toUpperCase();
+        let typeShort = shortenAircraftType(this.typeLong);
+        callsign += '\n' + typeShort;
+	    
         let alt;
         if (labelsGeom) {
             alt = adjust_geom_alt(this.alt_geom, this.position);
