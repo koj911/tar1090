@@ -832,7 +832,7 @@ function shortenAircraftType(type) {
     } else if (type.startsWith("AIRBUS ")) {
             return type.replace(/AIRBUS\s/, "");
     } else if (type.startsWith("Bell/Boeing ")) {
-            return type.replace(/Bell/Boeing\s/, "");
+            return type.replace(/Bell\/Boeing\s/, "");
     } else if (type.startsWith("BELL-BOEING ")) {
             return type.replace(/BELL-BOEING\s/, "");
     } else if (type.startsWith("BOEING ")) {
