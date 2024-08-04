@@ -827,20 +827,24 @@ PlaneObject.prototype.setMarkerRgb = function() {
 };
 
 function shortenAircraftType(type) {
-    if (type.startsWith("BOEING 7")) {
-            return type.replace(/BOEING\s(7.*)/, "B$1");
-    } else if (type.startsWith("AIRBUS ")) {
-            return type.replace(/AIRBUS\s/, "");
-    } else if (type.startsWith("Bell/Boeing ")) {
-            return type.replace(/Bell\/Boeing\s/, "");
-    } else if (type.startsWith("BELL-BOEING ")) {
-            return type.replace(/BELL-BOEING\s/, "");
-    } else if (type.startsWith("BOEING ")) {
-            return type.replace(/BOEING\s/, "");
-    } else if (type.startsWith("DE HAVILLAND ")) {
-            return type.replace(/DE HAVILLAND\s/, "");
+    if (/^BOEING\s7/i.test(type)) {
+        return type.replace(/BOEING\s(7.*)/i, "B$1");
+    } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
+        return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
+    } else if (/^AIRBUS\s/i.test(type)) {
+        return type.replace(/AIRBUS\s/i, "");
+    } else if (/^Lockheed\sMartin\s/i.test(type)) {
+        return type.replace(/Lockheed\sMartin\s/i, "");
+    } else if (/^SIKORSKY\s/i.test(type)) {
+        return type.replace(/SIKORSKY\s/i, "");
+    } else if (/^Bell(\/|-)Boeing\s/i.test(type)) {
+        return type.replace(/Bell(\/|-)Boeing\s/i, "");
+    } else if (/^BOEING\s/i.test(type)) {
+        return type.replace(/BOEING\s/i, "");
+    } else if (/^DE\sHAVILLAND\s/i.test(type)) {
+        return type.replace(/DE\sHAVILLAND\s/i, "");
     } else {
-            return type;
+        return type;
     }
 }
 
