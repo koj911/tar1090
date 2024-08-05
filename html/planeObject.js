@@ -831,13 +831,14 @@ function shortenAircraftType(type) {
             return "-";
     }
     if (/^BOEING\s7/i.test(type)) {
-        return type.replace(/BOEING\s(7.*)/i, "B$1");
+        type = type.replace(/BOEING\s(7.*)/i, "B$1");
+        return type.replace(/Dreamliner/i, "");
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
         return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
     } else if (/^AIRBUS\s/i.test(type)) {
         return type.replace(/AIRBUS\s/i, "");
     } else if (/^Lockheed\sMartin\s/i.test(type)) {
-        return type.replace(/Lockheed\sMartin\s/i, "");
+        return type.replace(/Lockheed\sMartin\s(\w+)(\s+|$)/i, "$1");
     } else if (/^SIKORSKY\s/i.test(type)) {
         return type.replace(/SIKORSKY\s/i, "");
     } else if (/^Bell(\/|-)Boeing\s/i.test(type)) {
