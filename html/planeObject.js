@@ -827,6 +827,9 @@ PlaneObject.prototype.setMarkerRgb = function() {
 };
 
 function shortenAircraftType(type) {
+    if (!type) {
+            return "-";
+    }
     if (/^BOEING\s7/i.test(type)) {
         return type.replace(/BOEING\s(7.*)/i, "B$1");
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
