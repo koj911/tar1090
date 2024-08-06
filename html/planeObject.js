@@ -840,7 +840,7 @@ function shortenAircraftType(type) {
     } else if (/^Lockheed\sMartin\s/i.test(type)) {
         return type.replace(/Lockheed\sMartin\s([\w-]+).*/i, "$1");
     } else if (/^SIKORSKY\s/i.test(type)) {
-        return type.replace(/SIKORSKY\s/i, "");
+        return type.replace(/^SIKORSKY\s([\w-]+).*/i, "$1");
     } else if (/^Bell(\/|-)Boeing\s/i.test(type)) {
         return type.replace(/Bell(\/|-)Boeing\s/i, "");
     } else if (/^BOEING\s/i.test(type)) {
@@ -849,6 +849,8 @@ function shortenAircraftType(type) {
         return type.replace(/DE\sHAVILLAND\s/i, "");
     } else if (/^AEROSPATIALE\s/i.test(type)) {
         return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
+    } else if (/^CESSNA\s(UC-35\S*)/i.test(type)) {
+        return type.replace(/^CESSNA\s(UC-35\S*).*/i, "$1");
     } else {
         return type;
     }
