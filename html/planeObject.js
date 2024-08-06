@@ -849,6 +849,8 @@ function shortenAircraftType(type) {
         return type.replace(/DE\sHAVILLAND\s/i, "");
     } else if (/^AEROSPATIALE\s/i.test(type)) {
         return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
+    } else if (/^Beech\s(UC-12\S*)/i.test(type)) {
+        return type.replace(/^Beech\s(UC-12\S*).*/i, "$1");
     } else if (/^CESSNA\s(UC-35\S*)/i.test(type)) {
         return type.replace(/^CESSNA\s(UC-35\S*).*/i, "$1");
     } else {
