@@ -838,7 +838,7 @@ function shortenAircraftType(type) {
     } else if (/^AIRBUS\s/i.test(type)) {
         return type.replace(/AIRBUS\s/i, "");
     } else if (/^Lockheed\sMartin\s/i.test(type)) {
-        return type.replace(/Lockheed\sMartin\s(\w+)(\s+|$)/i, "$1");
+        return type.replace(/Lockheed\sMartin\s([\w-]+).*/i, "$1");
     } else if (/^SIKORSKY\s/i.test(type)) {
         return type.replace(/SIKORSKY\s/i, "");
     } else if (/^Bell(\/|-)Boeing\s/i.test(type)) {
@@ -847,10 +847,13 @@ function shortenAircraftType(type) {
         return type.replace(/BOEING\s/i, "");
     } else if (/^DE\sHAVILLAND\s/i.test(type)) {
         return type.replace(/DE\sHAVILLAND\s/i, "");
+    } else if (/^AEROSPATIALE\s/i.test(type)) {
+        return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
     } else {
         return type;
     }
 }
+
 
 PlaneObject.prototype.updateIcon = function() {
 
