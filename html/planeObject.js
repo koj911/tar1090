@@ -830,13 +830,13 @@ function shortenAircraftType(type) {
     if (!type) {
             return "-";
     }
-    if (/^BOEING\s7/i.test(type)) {
-        type = type.replace(/BOEING\s(7.*)/i, "B$1");
-        return type.replace(/Dreamliner/i, "");
+    let match;
+    if (match = type.match(/^BOEING\s(7\S+)/i)) {
+        return  `B${match[1]}`;
+    } else if (match = type.match(/^AIRBUS\s(A-\S+)/i)) {
+        return  `${match[1]}`;
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
         return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
-    } else if (/^AIRBUS\s/i.test(type)) {
-        return type.replace(/AIRBUS\s/i, "");
     } else if (/^Lockheed\sMartin\s/i.test(type)) {
         return type.replace(/Lockheed\sMartin\s([\w-]+).*/i, "$1");
     } else if (/^SIKORSKY\s/i.test(type)) {
@@ -849,10 +849,10 @@ function shortenAircraftType(type) {
         return type.replace(/DE\sHAVILLAND\s/i, "");
     } else if (/^AEROSPATIALE\s/i.test(type)) {
         return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
-    } else if (/^Beech\s(UC-12\S*)/i.test(type)) {
-        return type.replace(/^Beech\s(UC-12\S*).*/i, "$1");
-    } else if (/^CESSNA\s(UC-35\S*)/i.test(type)) {
-        return type.replace(/^CESSNA\s(UC-35\S*).*/i, "$1");
+    } else if (match = type.match(/^Beech\s(UC-12\S*).*/i)) {
+        return match[1];
+    } else if (match = type.match(/^CESSNA\s(UC-35\S*).*/i)) {
+        return match[1];
     } else {
         return type;
     }
