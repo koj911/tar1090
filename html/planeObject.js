@@ -841,8 +841,8 @@ function shortenAircraftType(type) {
         return type.replace(/Lockheed\sMartin\s([\w-]+).*/i, "$1");
     } else if (/^SIKORSKY\s/i.test(type)) {
         return type.replace(/^SIKORSKY\s([\w-]+).*/i, "$1");
-    } else if (/^Bell(\/|-)Boeing\s/i.test(type)) {
-        return type.replace(/Bell(\/|-)Boeing\s/i, "");
+    } else if (match = type.match(/^Bell[\/-]Boeing\s(\S+)/i)) {
+        return match[1];
     } else if (/^BOEING\s/i.test(type)) {
         return type.replace(/BOEING\s/i, "");
     } else if (match = type.match(/^DE\sHAVILLAND\s(\S+).*/i)) {
