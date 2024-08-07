@@ -845,14 +845,16 @@ function shortenAircraftType(type) {
         return type.replace(/Bell(\/|-)Boeing\s/i, "");
     } else if (/^BOEING\s/i.test(type)) {
         return type.replace(/BOEING\s/i, "");
-    } else if (/^DE\sHAVILLAND\s/i.test(type)) {
-        return type.replace(/DE\sHAVILLAND\s/i, "");
+    } else if (match = type.match(/^DE\sHAVILLAND\s(\S+).*/i)) {
+        return match[1];
     } else if (/^AEROSPATIALE\s/i.test(type)) {
         return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
     } else if (match = type.match(/^Beech\s(UC-12\S*).*/i)) {
         return match[1];
     } else if (match = type.match(/^CESSNA\s(UC-35\S*).*/i)) {
         return match[1];
+    } else if (match = type.match(/^AGUSTA\s(\S+)/i)) {
+        return  `${match[1]}`;
     } else {
         return type;
     }
