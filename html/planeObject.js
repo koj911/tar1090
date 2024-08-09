@@ -849,7 +849,7 @@ function shortenAircraftType(type) {
         return match[1];
     } else if (/^AEROSPATIALE\s/i.test(type)) {
         return type.replace(/AEROSPATIALE\s([\w-]+).*/i, "$1");
-    } else if (match = type.match(/^(Beech(?:craft)?)\s(UC-12\S*).*/i)) {
+    } else if (match = type.match(/^(Beech(?:craft)?)\s(U?C-12\S*).*/i)) {
         return match[2];
     } else if (match = type.match(/^CESSNA\s(UC-35\S*).*/i)) {
         return match[1];
