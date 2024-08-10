@@ -826,15 +826,16 @@ PlaneObject.prototype.setMarkerRgb = function() {
     this.glMarker.set('b', rgb[2]);
 };
 
-function shortenAircraftType(type) {
+PlaneObject.prototype.shortenAircraftType = function() {
+    let type = this.typeLong;
     if (!type) {
-            return "-";
+        return "-";
     }
     let match;
     if (match = type.match(/^BOEING\s(7\S+)/i)) {
-        return  `B${match[1]}`;
+        return `B${match[1]}`;
     } else if (match = type.match(/^AIRBUS\s(A-\S+)/i)) {
-        return  `${match[1]}`;
+        return `${match[1]}`;
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
         return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
     } else if (/^Lockheed\sMartin\s/i.test(type)) {
@@ -844,7 +845,7 @@ function shortenAircraftType(type) {
     } else if (match = type.match(/^Bell[\/-]Boeing\s(\S+)/i)) {
         return match[1];
     } else if (match = type.match(/^BOEING\s(\S+)/i)) {
-        return  match[1];
+        return match[1];
     } else if (match = type.match(/^DE\sHAVILLAND\s(\S+).*/i)) {
         return match[1];
     } else if (/^AEROSPATIALE\s/i.test(type)) {
@@ -857,6 +858,7 @@ function shortenAircraftType(type) {
         return match[1];
     } else {
         return type;
+        //return this.icaotype;
     }
 }
 
@@ -888,7 +890,8 @@ PlaneObject.prototype.updateIcon = function() {
         const unknown = NBSP+NBSP+"?"+NBSP+NBSP;
 
         callsign = this.icao.toUpperCase();
-        let typeShort = shortenAircraftType(this.typeLong);
+        //let typeShort = shortenAircraftType(this.typeLong);
+	let typeShort = this.shortenAircraftType();
         callsign += '\n' + typeShort;
 	    
         let alt;
