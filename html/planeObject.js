@@ -838,8 +838,8 @@ PlaneObject.prototype.shortenAircraftType = function() {
         return `${match[1]}`;
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
         return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
-    } else if (/^Lockheed\sMartin\s/i.test(type)) {
-        return type.replace(/Lockheed\sMartin\s([\w-]+).*/i, "$1");
+    } else if (match = type.match(/^Lockheed(?:\sMartin)?\s(\S+)/i)) {
+        return match[1];
     } else if (/^SIKORSKY\s/i.test(type)) {
         return type.replace(/^SIKORSKY\s([\w-]+).*/i, "$1");
     } else if (match = type.match(/^Bell[\/-]Boeing\s(\S+)/i)) {
