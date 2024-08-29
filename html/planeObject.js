@@ -834,7 +834,7 @@ PlaneObject.prototype.shortenAircraftType = function() {
     let match;
     if (match = type.match(/^BOEING\s(7\S+)/i)) {
         return `B${match[1]}`;
-    } else if (match = type.match(/^AIRBUS\s(A-\S+)/i)) {
+    } else if (match = type.match(/^AIRBUS\s(A\S+)/i)) {
         return `${match[1]}`;
     } else if (/^AIRBUS\sHELICOPTERS\s/i.test(type)) {
         return type.replace(/AIRBUS\sHELICOPTERS\s/i, "");
